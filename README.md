@@ -10,5 +10,5 @@ Neil Gollapudi
 - Download the source code from [github.com/neilkg](https://github.com/neilkg/GPA_ANALYSIS)
 ```
 $ make GPA
-$ ./GPA < filename.csv
+$ ./GPA filename.csv
 ``` 
