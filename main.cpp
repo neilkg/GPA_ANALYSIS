@@ -1,30 +1,20 @@
-
-// Created by Neil Gollapudi 7/22/2018
-
 #include <iostream>
 #include <string>
 #include <map>
 #include <vector>
 #include <utility>
 #include "csvstream.h"
+#include "GPA.h"
+
+// Created by Neil Gollapudi 7/22/2018
 
 using namespace std;
 
-struct Taken_Course {
-    string name;
-    string grade;
-    int credits;
-};
 
-/*
-class Category {
-    vector<Taken_Course> sub_data;
-    string key;
-    double average_gpa;
-    int total_credits;
-};
- */
-
+// Requires: Valid csv file
+// Effects: Reads all data from colums of "Class", "Credits", and "Grades"
+//          and places them in a Taken_Course data type in a vector
+// Modifies: data
 void read_csv(const string &filename, vector<Taken_Course> &data) {
     csvstream csv(filename);
     map<string, string> credits_data;
@@ -55,7 +45,9 @@ void read_csv(const string &filename, vector<Taken_Course> &data) {
     }
 }
 
-void view_raw_data(vector<Taken_Course> &data) {
+// Effects: Prints out all raw_data in data vector
+//          (used for debugging purposes)
+void view_raw_data(const vector<Taken_Course> &data) {
     for (auto i:data) {
         std::cout << i.name << " " << i.credits << " " << i.grade << endl;
     }
@@ -68,9 +60,27 @@ int main(int argc, char *argv[]) {
         cerr << "invalid arguments\n";
         return 1;
     }
+    // Raw data is stored in vector format from read_csv with
+    // Taken_Course data type = class name, grade, credits
+    // Will be converted into a map
+    // Key = department name, and Val = Category data type
+    // Ex class EECS 183, is put into EECS category
     vector<Taken_Course> raw_data;
     read_csv(argv[1], raw_data);
-    view_raw_data(raw_data);
+    //view_raw_data(raw_data);
+    
+    
+    map<string, Category> main_data;
+    place_in_map(raw_data, main_data);
+    
+    for (auto i:main_data) {
+        std::string key = i.first;
+        Category c = i.second;
+        std::cout << "*****" << c.key << " " << c.total_credits << std::endl;
+        for (auto i:c.sub_data) {
+            std::cout << i.name << " " << i.grade << " " << i.credits << std::endl;
+        }
+    }
 
     return 0;
 }
