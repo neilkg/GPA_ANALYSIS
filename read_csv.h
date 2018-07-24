@@ -71,7 +71,7 @@ void view_main_data(const std::map<std::string, Category> &data) {
     for (auto i:data) {
         std::string key = i.first;
         Category c = i.second;
-        std::cout << "*****" << c.key << " " << c.category_credits << std::endl;
+        std::cout << "*****" << c.key << " " << c.category_credits << " " << c.category_gpa << std::endl;
         for (auto i:c.sub_data) {
             std::cout << i.name << " " << i.grade << " " << i.credits << std::endl;
         }
