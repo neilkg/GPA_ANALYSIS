@@ -18,11 +18,20 @@ struct Taken_Course {
 
 class Category {
 public:
-    Category() : average_gpa(0), total_credits(0) {}
+    Category() : category_gpa(0), category_credits(0) {}
     
     std::vector<Taken_Course> sub_data;
     std::string key;
-    double average_gpa;
+    double category_gpa;
+    int category_credits;
+};
+
+class Overall {
+public:
+    Overall() : total_average_gpa(0), total_credits(0) {}
+    
+    std::map<std::string, Category> main_data;
+    double total_average_gpa;
     int total_credits;
 };
 
@@ -46,18 +55,22 @@ void remove_nonuppercase(std::string &str) {
 //          processing convinience
 //          For each category, only gives vector type, key, and total_credits
 // Modifies: main_data
-void place_in_map(const std::vector<Taken_Course> &raw_data, std::map<std::string, Category> &main_data) {
+void place_in_map(const std::vector<Taken_Course> &raw_data, Overall &driver) {
+    
     for (auto i:raw_data) {
         std::string department_name = i.name;
         remove_nonuppercase(department_name);
         
         // department name maps to its respective category object
-        Category *object = &main_data[department_name];
+        Category *object = &driver.main_data[department_name];
         object->sub_data.push_back(i);
         object->key = department_name;
-        object->total_credits += i.credits;
+        object->category_credits += i.credits;
+        
+        driver.total_credits += i.credits;
     }
 }
+
 
 
 
