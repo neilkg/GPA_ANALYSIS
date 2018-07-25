@@ -47,7 +47,7 @@ void read_csv(const std::string &filename, std::vector<Taken_Course> &data) {
             if (label == "Credits") {
                 credits_in = stoi(datum);
             }
-            else if (label == "Grades") {
+            else if (label == "Grade") {
                 grade_in = datum;
             }
             else {

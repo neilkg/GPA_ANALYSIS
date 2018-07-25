@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <map>
 #include <vector>
+#include <string>
 #include "read_csv.h"
 #include "GPA.h"
 
@@ -33,7 +34,9 @@ int main(int argc, char *argv[]) {
     driver.compute_category_GPA();
     driver.compute_total_GPA();
     
-    
+    std::cout << driver.get_total_GPA() << std::endl;
+    std::cout << driver.get_category_GPA("EECS") << std::endl;
+    std::cout << driver.get_category_GPA("ECON") << std::endl;
 
     // Finished storing all information in data structures and precomputing
     
