@@ -17,7 +17,7 @@
 // Key = department name, and Val = Category data type
 // Ex class EECS 183, is put into EECS category
 int main(int argc, char *argv[]) {
-    std::setprecision(3);
+    std::cout << std::setprecision(4);
     if (argc != 2) {
         std::cerr << "invalid arguments\n";
         return 1;
@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
     driver.place_in_map(raw_data);
     driver.compute_category_GPA();
     driver.compute_total_GPA();
+    
     
 
     // Finished storing all information in data structures and precomputing
