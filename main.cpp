@@ -8,6 +8,17 @@
 
 // Created by Neil Gollapudi 7/22/2018
 
+void print_menu() {
+    std::cout << "1: Overall GPA\n";
+    std::cout << "2: Category GPA\n";
+    std::cout << "3: Modify GPA\n";
+    std::cout << "4: View Transcript\n";
+    std::cout << "5: Quit\n";
+}
+
+void main_processing(int command, Overall &driver);
+
+
 
 // driver is where the main instance of Overall class
 // map of all data is stored here as well as total gpa and credits
@@ -34,16 +45,67 @@ int main(int argc, char *argv[]) {
     driver.compute_category_GPA();
     driver.compute_total_GPA();
     
-    std::cout << driver.get_total_GPA() << std::endl;
-    std::cout << driver.get_category_GPA("EECS") << std::endl;
-    std::cout << driver.get_category_GPA("ECON") << std::endl;
-
-    // Finished storing all information in data structures and precomputing
+    print_menu();
+    int command;
+    while(std::cin >> command && (command == 1 || command == 2 ||
+                                  command == 3 || command == 4)) {
+        std::cout << "\n";
+        main_processing(command, driver);
+        std::cout << "\n\n";
+        print_menu();
+    }
     
-    // TODO
-    // Still need to create a user interface and make all of the settings
-    // described in read me
     
+    std::cout << "\nThank you for using the GPA calculator" << std::endl;
     return 0;
+}
+
+
+
+
+
+//************IMPLEMENTATION**************//
+
+void main_processing(int command, Overall &driver) {
+    if (command == 1) {
+        std::cout << "GPA: " << driver.get_total_GPA() << "\n";
+        std::cout << "Credits: " << driver.get_total_credits();
+    }
+    else if (command == 2) {
+        std::vector<std::string> categories;
+        std::cout << "What category(s) would you like to find the combined";
+        std::cout << " GPA of?\n";
+        
+        std::string s;
+        std::string type = "";
+        
+        std::cin.ignore();
+        std::getline(std::cin, s);
+        for (size_t i = 0; i < s.size(); ++i) {
+            if (s[i] == ' ') {
+                categories.push_back(type);
+                type = "";
+            }
+            else if (i == s.size() - 1) {
+                type.push_back(s[i]);
+                categories.push_back(type);
+            }
+            else {
+                type.push_back(s[i]);
+            }
+        }
+        std::cout << "\n";
+        
+        std::cout << "GPA: " << driver.get_category_GPA(categories) << "\n";
+        std::cout << "Credits: " << driver.get_category_credits(categories);
+    }
+    else if (command == 3) {
+        std::cout << "Modify DATA\n";
+        std::cout << "TODO. Coming in August, 2018!";
+    }
+    else if (command == 4) {
+        std::cout << "View DATA\n";
+        std::cout << "TODO. Coming in August, 2018!";
+    }
 }
 

@@ -49,11 +49,17 @@ public:
     // MODIFIES: total_average_gpa
     void compute_total_GPA();
     
-    // EFFECTS: Returns GPA by category
-    double get_category_GPA(const std::string &category);
-    
     // EFFECTS: Returns total GPA
     double get_total_GPA();
+    
+    // EFFECTS: Returns GPA by different categories
+    double get_category_GPA(std::vector<std::string> &categories);
+    
+    // EFFECTS: Returns total credits
+    int get_total_credits();
+    
+    // EFFECTS: Returns combined credits from categories
+    int get_category_credits(std::vector<std::string> &categories);
     
 private:
     std::map<std::string, Category> main_data;
@@ -124,19 +130,34 @@ void Overall::compute_total_GPA() {
 
 
 
-double Overall::get_category_GPA(const std::string &ctgy) {
-    if (main_data.find(ctgy) != main_data.end()) {
-        return main_data[ctgy].category_gpa;
-    }
-    else {
-        std::cout << "Category Does Not Exist\n";
-        return 0;
-    }
-}
-
-
 double Overall::get_total_GPA() {
     return total_average_gpa;
+}
+
+int Overall::get_total_credits() {
+    return total_credits;
+}
+
+double Overall::get_category_GPA(std::vector<std::string> &categories) {
+    double MTP = 0;
+    int credits = 0;
+    for (auto i:categories) {
+        if (main_data.find(i) != main_data.end()) {
+            credits += main_data[i].category_credits;
+            MTP += main_data[i].category_credits * main_data[i].category_gpa;
+        }
+    }
+    return MTP / credits;
+}
+
+int Overall::get_category_credits(std::vector<std::string> &categories) {
+    int credits = 0;
+    for (auto i:categories) {
+        if (main_data.find(i) != main_data.end()) {
+            credits += main_data[i].category_credits;
+        }
+    }
+    return credits;
 }
 
 
