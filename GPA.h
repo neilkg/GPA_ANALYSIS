@@ -13,6 +13,7 @@ struct Taken_Course {
     std::string name;
     std::string grade;
     int credits;
+    bool original;
 };
 
 // Used in Overall class
@@ -44,7 +45,7 @@ public:
     //          Precomputation allows for easy access later
     // MODIFIES: main_data
     void compute_category_GPA();
-    
+
     // EFFECTS: Computes total overall GPA for student
     // MODIFIES: total_average_gpa
     void compute_total_GPA();
@@ -60,6 +61,13 @@ public:
     
     // EFFECTS: Returns combined credits from categories
     int get_category_credits(std::vector<std::string> &categories);
+    
+    // EFFECTS: Displays all raw data to cout
+    void view_transcript();
+    
+    // EFFECTS: Places new temporary data in map and recomputes the total GPA
+    //          and GPA for a particular category and credits
+    void add_to_map(const std::string &class_name_in, int credits_in, const std::string &grade_in);
     
 private:
     std::map<std::string, Category> main_data;
@@ -158,6 +166,41 @@ int Overall::get_category_credits(std::vector<std::string> &categories) {
         }
     }
     return credits;
+}
+
+
+void Overall::view_transcript() {
+    for (auto i:main_data) {
+        for (auto j:i.second.sub_data) {
+            std::cout << j.name << " " << j.grade << " " << j.credits << "\n";
+        }
+    }
+}
+
+void Overall::add_to_map(const std::string &class_name_in, int credits_in, const std::string &grade_in) {
+    std::string department_name = class_name_in;
+    remove_nonuppercase(department_name);
+    Category *ctgy = &main_data[department_name];
+    
+    Taken_Course object;
+    
+    object.name = class_name_in;
+    object.credits = credits_in;
+    object.grade = grade_in;
+    object.original = false;
+    
+    ctgy->sub_data.push_back(object);
+    
+    
+    double MTP = ctgy->category_gpa * ctgy->category_credits;
+    MTP += credits_in * grade_to_gpa[grade_in];
+    ctgy->category_credits += credits_in;
+    ctgy->category_gpa = MTP / ctgy->category_credits;
+    
+    MTP = total_credits * total_average_gpa;
+    MTP += credits_in * grade_to_gpa[grade_in];
+    total_credits += credits_in;
+    total_average_gpa = MTP / total_credits;
 }
 
 

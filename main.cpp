@@ -100,12 +100,32 @@ void main_processing(int command, Overall &driver) {
         std::cout << "Credits: " << driver.get_category_credits(categories);
     }
     else if (command == 3) {
-        std::cout << "Modify DATA\n";
-        std::cout << "TODO. Coming in August, 2018!";
+        int choice;
+        std::cout << "1: Add data\n";
+        std::cout << "2: Clear data\n";
+        std::cin >> choice;
+        
+        if (choice == 1) {
+            std::string class1;
+            int credits1;
+            std::string grade1;
+            
+            std::cout << "\nClass Name: ";
+            std::cin.ignore();
+            std::getline(std::cin, class1);
+            std::cout << "\nCredits: ";
+            std::cin >> credits1;
+            std::cout << "\nGrade: ";
+            std::cin.ignore();
+            std::getline(std::cin, grade1);
+            std::cout << std::endl;
+            
+            driver.add_to_map(class1, credits1, grade1);
+        }
     }
     else if (command == 4) {
-        std::cout << "View DATA\n";
-        std::cout << "TODO. Coming in August, 2018!";
+        driver.view_transcript();
     }
 }
+
 
