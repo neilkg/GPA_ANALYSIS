@@ -47,12 +47,14 @@ int main(int argc, char *argv[]) {
     
     print_menu();
     int command;
+    std::cout << "% ";
     while(std::cin >> command && (command == 1 || command == 2 ||
                                   command == 3 || command == 4)) {
         std::cout << "\n";
         main_processing(command, driver);
         std::cout << "\n\n";
         print_menu();
+        std::cout << "% ";
     }
     
     
@@ -75,6 +77,7 @@ void main_processing(int command, Overall &driver) {
         std::vector<std::string> categories;
         std::cout << "What category(s) would you like to find the combined";
         std::cout << " GPA of?\n";
+        std::cout << "% ";
         
         std::string s;
         std::string type = "";
@@ -103,6 +106,7 @@ void main_processing(int command, Overall &driver) {
         int choice;
         std::cout << "1: Add data\n";
         std::cout << "2: Clear data\n";
+        std::cout << "% ";
         std::cin >> choice;
         
         if (choice == 1) {
@@ -113,12 +117,11 @@ void main_processing(int command, Overall &driver) {
             std::cout << "\nClass Name: ";
             std::cin.ignore();
             std::getline(std::cin, class1);
-            std::cout << "\nCredits: ";
+            std::cout << "Credits: ";
             std::cin >> credits1;
-            std::cout << "\nGrade: ";
+            std::cout << "Grade: ";
             std::cin.ignore();
             std::getline(std::cin, grade1);
-            std::cout << std::endl;
             
             driver.add_to_map(class1, credits1, grade1);
         }
