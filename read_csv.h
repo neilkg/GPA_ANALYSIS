@@ -58,6 +58,7 @@ void read_csv(const std::string &filename, std::vector<Taken_Course> &data) {
         object.name = name_in;
         object.grade = grade_in;
         object.credits = credits_in;
+        object.original = true;
         data.push_back(object);
     }
 }

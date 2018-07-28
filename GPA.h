@@ -69,6 +69,9 @@ public:
     //          and GPA for a particular category and credits
     void add_to_map(const std::string &class_name_in, int credits_in, const std::string &grade_in);
     
+    // EFFECTS: Removes all previous temporarily added grade data
+    void remove_all_added();
+    
 private:
     std::map<std::string, Category> main_data;
     std::map<std::string, double> grade_to_gpa = {{"A+", 4.0}, {"A", 4.0},
@@ -201,6 +204,10 @@ void Overall::add_to_map(const std::string &class_name_in, int credits_in, const
     MTP += credits_in * grade_to_gpa[grade_in];
     total_credits += credits_in;
     total_average_gpa = MTP / total_credits;
+}
+
+void Overall::remove_all_added() {
+    // TODO finish later
 }
 
 
