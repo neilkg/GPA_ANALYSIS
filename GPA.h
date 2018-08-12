@@ -5,6 +5,8 @@
 #include <map>
 #include <vector>
 #include <utility>
+#include <algorithm>
+#include "termcolor.hpp"
 
 // Created by Neil Gollapudi 7/22/2018
 
@@ -85,7 +87,6 @@ private:
     // Modifies: str
     void remove_nonuppercase(std::string &str);
 };
-
 
 
 
@@ -173,11 +174,31 @@ int Overall::get_category_credits(std::vector<std::string> &categories) {
 
 
 void Overall::view_transcript() {
+    int x = 0;
     for (auto i:main_data) {
+        std::cout << termcolor::reset;
+        if (x%5 == 0) {
+            std::cout << termcolor::green;
+        }
+        else if (x%5 == 1) {
+            std::cout << termcolor::blue;
+        }
+        else if (x%5 == 2) {
+            std::cout << termcolor::magenta;
+        }
+        else if (x%5 == 3) {
+            std::cout << termcolor::cyan;
+        }
+        else {
+            std::cout << termcolor::red;
+        }
         for (auto j:i.second.sub_data) {
             std::cout << j.name << " " << j.grade << " " << j.credits << "\n";
         }
+        ++x;
     }
+    std::cout << termcolor::reset;
+    
 }
 
 void Overall::add_to_map(const std::string &class_name_in, int credits_in, const std::string &grade_in) {
@@ -207,7 +228,7 @@ void Overall::add_to_map(const std::string &class_name_in, int credits_in, const
 }
 
 void Overall::remove_all_added() {
-    // TODO finish later
+    //todo
 }
 
 

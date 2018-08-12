@@ -5,15 +5,19 @@
 #include <string>
 #include "read_csv.h"
 #include "GPA.h"
+#include "termcolor.hpp"
 
 // Created by Neil Gollapudi 7/22/2018
 
 void print_menu() {
+    std::cout << termcolor::grey;
     std::cout << "1: Overall GPA\n";
     std::cout << "2: Category GPA\n";
     std::cout << "3: Modify GPA\n";
     std::cout << "4: View Transcript\n";
     std::cout << "5: Quit\n";
+    std::cout << termcolor::reset;
+    
 }
 
 void main_processing(int command, Overall &driver);
@@ -57,8 +61,9 @@ int main(int argc, char *argv[]) {
         std::cout << "% ";
     }
     
-    
-    std::cout << "\nThank you for using the GPA calculator" << std::endl;
+    std::cout << termcolor::bold;
+    std::cout << "\nThank you for using the GPA calculator\n" << std::endl;
+    std::cout << termcolor::reset;
     return 0;
 }
 
@@ -70,8 +75,11 @@ int main(int argc, char *argv[]) {
 
 void main_processing(int command, Overall &driver) {
     if (command == 1) {
+        std::cout << termcolor::underline << "Overall GPA" << termcolor::reset << "\n";
+        std::cout << termcolor::bold;
         std::cout << "GPA: " << driver.get_total_GPA() << "\n";
         std::cout << "Credits: " << driver.get_total_credits();
+        std::cout << termcolor::reset;
     }
     else if (command == 2) {
         std::vector<std::string> categories;
@@ -99,8 +107,11 @@ void main_processing(int command, Overall &driver) {
         }
         std::cout << "\n";
         
+        std::cout << termcolor::underline << s << " GPA" << termcolor::reset << "\n";
+        std::cout << termcolor::bold;
         std::cout << "GPA: " << driver.get_category_GPA(categories) << "\n";
         std::cout << "Credits: " << driver.get_category_credits(categories);
+        std::cout << termcolor::reset;
     }
     else if (command == 3) {
         int choice;
@@ -124,6 +135,9 @@ void main_processing(int command, Overall &driver) {
             std::getline(std::cin, grade1);
             
             driver.add_to_map(class1, credits1, grade1);
+        }
+        else {
+            driver.remove_all_added();
         }
     }
     else if (command == 4) {
