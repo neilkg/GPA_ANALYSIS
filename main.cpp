@@ -10,7 +10,8 @@
 // Created by Neil Gollapudi 7/22/2018
 
 void print_menu() {
-    std::cout << termcolor::grey;
+    std::cout << termcolor::bold;
+    std::cout << termcolor::blue;
     std::cout << "1: Overall GPA\n";
     std::cout << "2: Category GPA\n";
     std::cout << "3: Modify GPA\n";
@@ -75,7 +76,9 @@ int main(int argc, char *argv[]) {
 
 void main_processing(int command, Overall &driver) {
     if (command == 1) {
-        std::cout << termcolor::underline << "Overall GPA" << termcolor::reset << "\n";
+        std::cout << termcolor::underline << termcolor::bold << termcolor::red;
+        std::cout << "Overall GPA";
+        std::cout << termcolor::reset << "\n";
         std::cout << termcolor::bold;
         std::cout << "GPA: " << driver.get_total_GPA() << "\n";
         std::cout << "Credits: " << driver.get_total_credits();
@@ -83,8 +86,10 @@ void main_processing(int command, Overall &driver) {
     }
     else if (command == 2) {
         std::vector<std::string> categories;
+        std::cout << termcolor::bold;
         std::cout << "What category(s) would you like to find the combined";
         std::cout << " GPA of?\n";
+        std::cout << termcolor::reset;
         std::cout << "% ";
         
         std::string s;
@@ -106,8 +111,9 @@ void main_processing(int command, Overall &driver) {
             }
         }
         std::cout << "\n";
-        
-        std::cout << termcolor::underline << s << " GPA" << termcolor::reset << "\n";
+        std::cout << termcolor::underline << termcolor::bold << termcolor::red;
+        std::cout << s << " GPA";
+        std::cout << termcolor::reset << "\n";
         std::cout << termcolor::bold;
         std::cout << "GPA: " << driver.get_category_GPA(categories) << "\n";
         std::cout << "Credits: " << driver.get_category_credits(categories);
@@ -115,8 +121,10 @@ void main_processing(int command, Overall &driver) {
     }
     else if (command == 3) {
         int choice;
+        std::cout << termcolor::bold;
         std::cout << "1: Add data\n";
         std::cout << "2: Clear data\n";
+        std::cout << termcolor::reset;
         std::cout << "% ";
         std::cin >> choice;
         
@@ -125,12 +133,18 @@ void main_processing(int command, Overall &driver) {
             int credits1;
             std::string grade1;
             
+            std::cout << termcolor::bold;
             std::cout << "\nClass Name: ";
+            std::cout << termcolor::reset;
             std::cin.ignore();
             std::getline(std::cin, class1);
+            std::cout << termcolor::bold;
             std::cout << "Credits: ";
+            std::cout << termcolor::reset;
             std::cin >> credits1;
+            std::cout << termcolor::bold;
             std::cout << "Grade: ";
+            std::cout << termcolor::reset;
             std::cin.ignore();
             std::getline(std::cin, grade1);
             

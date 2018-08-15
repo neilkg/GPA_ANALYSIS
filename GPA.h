@@ -175,22 +175,24 @@ int Overall::get_category_credits(std::vector<std::string> &categories) {
 
 void Overall::view_transcript() {
     int x = 0;
+    std::cout << termcolor::bold << termcolor::red << termcolor::underline;
+    std::cout << "Transcript";
+    std::cout << termcolor::reset << "\n";
     for (auto i:main_data) {
         std::cout << termcolor::reset;
-        if (x%5 == 0) {
+        std::cout << termcolor::bold;
+        int num = 4;
+        if (x%num == 0) {
             std::cout << termcolor::green;
         }
-        else if (x%5 == 1) {
-            std::cout << termcolor::blue;
-        }
-        else if (x%5 == 2) {
+        else if (x%num == 1) {
             std::cout << termcolor::magenta;
         }
-        else if (x%5 == 3) {
+        else if (x%num == 2) {
             std::cout << termcolor::cyan;
         }
-        else {
-            std::cout << termcolor::red;
+        else if (x%num == 3) {
+            std::cout << termcolor::yellow;
         }
         for (auto j:i.second.sub_data) {
             std::cout << j.name << " " << j.grade << " " << j.credits << "\n";
