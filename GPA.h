@@ -6,6 +6,7 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <iomanip>
 #include "termcolor.hpp"
 
 // Created by Neil Gollapudi 7/22/2018
@@ -172,6 +173,11 @@ int Overall::get_category_credits(std::vector<std::string> &categories) {
     return credits;
 }
 
+// for seperation of transcript tables
+template<typename T> void printElement(T t, const int& width)
+{
+    std::cout << std::left << std::setw(width) << std::setfill(' ') << t;
+}
 
 void Overall::view_transcript() {
     int x = 0;
@@ -195,7 +201,10 @@ void Overall::view_transcript() {
             std::cout << termcolor::yellow;
         }
         for (auto j:i.second.sub_data) {
-            std::cout << j.name << " " << j.grade << " " << j.credits << "\n";
+            printElement(j.name, 15);
+            printElement(j.grade, 5);
+            printElement(j.credits, 10);
+            std::cout << std::endl;
         }
         ++x;
     }
