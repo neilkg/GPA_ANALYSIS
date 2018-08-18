@@ -13,12 +13,13 @@ $ make GPA
 $ ./GPA filename.csv
 ```
 
-***Running Program for the Public***
-* Steps 1-3 only need to be done once
 
-1. Open Terminal
+**Running Program for the Public**
+*(Steps 1-3 only need to be done once)*
 
-2. Enter in these commands (not including '$')
+**1.** Open Terminal
+
+**2.** Enter in these commands (not including '$')
 ```
 $ mkdir test
 $ cd test
@@ -31,12 +32,12 @@ $ mv test/grades.csv Desktop/
 $ rm test
 ```
 
-3. Click on grades.csv on your computer desktop(homepage) and edit the template with your grades.
+**3.** Click on grades.csv on your computer desktop(homepage) and edit the template with your grades.
 
-4. Run Program
+**4.** Run Program
 ```
 $ ./GPA Desktop/grades.csv
 ```
 
-5. Anytime you want to edit your grades, add to the grades.csv file and Save As
+**5.** Anytime you want to edit your grades, add to the grades.csv file and Save As
 
