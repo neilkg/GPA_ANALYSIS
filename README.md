@@ -16,5 +16,5 @@ $ ./setup.sh
 
 **Run Program:**
 ```
-$./GPA Desktop/grades.csv
+$ ./GPA Desktop/grades.csv
 ```
