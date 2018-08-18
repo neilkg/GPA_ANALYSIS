@@ -9,7 +9,6 @@ Created by Neil Gollapudi
 * Enter in Terminal (not including '$')
 ```
 $ wget https://github.com/neilkg/GPA_ANALYSIS/raw/master/setup.sh
-$ chmod 700 setup.sh
 $ ./setup.sh
 ```
 * Click on grades.csv on your computer desktop(homepage) and edit the template with your grades.
