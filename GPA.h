@@ -212,7 +212,7 @@ void Overall::view_transcript() {
     
 }
 
-void Overall::add_to_map(const std::string &class_name_in, int credits_in, const std::string &grade_in) {
+void Overall::add_to_map(const std::string &class_name_in, double credits_in, const std::string &grade_in) {
     std::string department_name = class_name_in;
     remove_nonuppercase(department_name);
     Category *ctgy = &main_data[department_name];
