@@ -12,6 +12,7 @@ Created by Neil Gollapudi
 $ make GPA
 $ ./GPA filename.csv
 ```
+&nbsp;
 &nbsp; 
 **Running Program for the Public**
 *(Steps 1-3 only need to be done once)*
@@ -27,8 +28,8 @@ $ git pull https://github.com/neilkg/GPA_ANALYSIS
 $ make
 $ mv GPA ~
 $ cd ..
-$ mv test/grades.csv Desktop/
-$ rm test
+& mv test/grades.csv Desktop/
+$ rm -rf test
 ```
 
 **3.** Click on grades.csv on your computer desktop(homepage) and edit the template with your grades.
