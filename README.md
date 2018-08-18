@@ -12,8 +12,7 @@ Created by Neil Gollapudi
 $ make GPA
 $ ./GPA filename.csv
 ```
-
-
+ 
 **Running Program for the Public**
 *(Steps 1-3 only need to be done once)*
 

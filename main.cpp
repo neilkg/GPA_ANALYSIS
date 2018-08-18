@@ -130,7 +130,7 @@ void main_processing(int command, Overall &driver) {
         
         if (choice == 1) {
             std::string class1;
-            int credits1;
+            double credits1;
             std::string grade1;
             
             std::cout << termcolor::bold;

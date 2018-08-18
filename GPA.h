@@ -15,7 +15,7 @@
 struct Taken_Course {
     std::string name;
     std::string grade;
-    int credits;
+    double credits;
 };
 
 // Used in Overall class
@@ -26,7 +26,7 @@ public:
     std::vector<Taken_Course> sub_data;
     std::string key;
     double category_gpa;
-    int category_credits;
+    double category_credits;
 };
 
 
@@ -59,17 +59,17 @@ public:
     double get_category_GPA(std::vector<std::string> &categories);
     
     // EFFECTS: Returns total credits
-    int get_total_credits();
+    double get_total_credits();
     
     // EFFECTS: Returns combined credits from categories
-    int get_category_credits(std::vector<std::string> &categories);
+    double get_category_credits(std::vector<std::string> &categories);
     
     // EFFECTS: Displays all raw data to cout
     void view_transcript();
     
     // EFFECTS: Places new temporary data in map and recomputes the total GPA
     //          and GPA for a particular category and credits
-    void add_to_map(const std::string &class_name_in, int credits_in, const std::string &grade_in);
+    void add_to_map(const std::string &class_name_in, double credits_in, const std::string &grade_in);
     
     // EFFECTS: Removes all previous temporarily added grade data
     void remove_all_added();
@@ -81,7 +81,7 @@ private:
         {"A-", 3.7}, {"B+", 3.3}, {"B", 3.0}, {"B-", 2.7}, {"C+", 2.3},
         {"C", 2.0}, {"C-", 1.7}, {"D", 1}, {"E", 0}};
     double total_average_gpa;
-    int total_credits;
+    double total_credits;
     
     // Used in place_in_map()
     // Effects: removes all non uppercase characters in the string
@@ -147,7 +147,7 @@ double Overall::get_total_GPA() {
     return total_average_gpa;
 }
 
-int Overall::get_total_credits() {
+double Overall::get_total_credits() {
     return total_credits;
 }
 
@@ -163,7 +163,7 @@ double Overall::get_category_GPA(std::vector<std::string> &categories) {
     return MTP / credits;
 }
 
-int Overall::get_category_credits(std::vector<std::string> &categories) {
+double Overall::get_category_credits(std::vector<std::string> &categories) {
     int credits = 0;
     for (auto i:categories) {
         if (main_data.find(i) != main_data.end()) {
