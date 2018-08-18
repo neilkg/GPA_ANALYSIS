@@ -262,15 +262,10 @@ void Overall::remove_all_added() {
         }
     }
     
+    added_data.clear();
     compute_category_GPA();
     compute_total_GPA();
 }
-
-
-
-
-
-
 
 
 
