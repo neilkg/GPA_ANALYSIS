@@ -16,7 +16,6 @@ struct Taken_Course {
     std::string name;
     std::string grade;
     int credits;
-    bool original;
 };
 
 // Used in Overall class
@@ -77,6 +76,7 @@ public:
     
 private:
     std::map<std::string, Category> main_data;
+    std::vector<Taken_Course> added_data;
     std::map<std::string, double> grade_to_gpa = {{"A+", 4.0}, {"A", 4.0},
         {"A-", 3.7}, {"B+", 3.3}, {"B", 3.0}, {"B-", 2.7}, {"C+", 2.3},
         {"C", 2.0}, {"C-", 1.7}, {"D", 1}, {"E", 0}};
@@ -222,9 +222,9 @@ void Overall::add_to_map(const std::string &class_name_in, int credits_in, const
     object.name = class_name_in;
     object.credits = credits_in;
     object.grade = grade_in;
-    object.original = false;
     
     ctgy->sub_data.push_back(object);
+    added_data.push_back(object);
     
     
     double MTP = ctgy->category_gpa * ctgy->category_credits;
@@ -239,7 +239,31 @@ void Overall::add_to_map(const std::string &class_name_in, int credits_in, const
 }
 
 void Overall::remove_all_added() {
-    //todo
+    for (size_t i = 0; i < added_data.size(); ++i) {
+        Taken_Course *course = &added_data[i];
+        std::string department_name = course->name;
+        remove_nonuppercase(department_name);
+        
+        Category *ctgy = &main_data[department_name];
+        ctgy->category_credits -= course->credits;
+        total_credits -= course->credits;
+        
+        for (size_t i = 0; i < ctgy->sub_data.size(); ++i) {
+            if (ctgy->sub_data[i].name == course->name &&
+                ctgy->sub_data[i].credits == course->credits &&
+                ctgy->sub_data[i].grade == course->grade) {
+                ctgy->sub_data.erase(ctgy->sub_data.begin() + long(i));
+                break;
+            }
+        }
+        
+        if (ctgy->sub_data.size() == 0) {
+            main_data.erase(department_name);
+        }
+    }
+    
+    compute_category_GPA();
+    compute_total_GPA();
 }
 
 
