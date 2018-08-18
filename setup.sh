@@ -7,3 +7,4 @@ mv GPA ~
 cd ..
 mv test/grades.csv Desktop/
 rm -rf test
+rm setup.sh
