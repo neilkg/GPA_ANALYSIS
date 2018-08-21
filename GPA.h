@@ -128,7 +128,12 @@ void Overall::compute_category_GPA() {
         for (auto &course:ctgy.second.sub_data) {
             total_MTP += (course.credits * grade_to_gpa[course.grade]);
         }
-        ctgy.second.category_gpa = total_MTP / ctgy.second.category_credits;
+        if (ctgy.second.category_credits != 0) {
+            ctgy.second.category_gpa = total_MTP / ctgy.second.category_credits;
+        }
+        else {
+            ctgy.second.category_gpa = 0;
+        }
     }
 }
 
@@ -138,7 +143,12 @@ void Overall::compute_total_GPA() {
     for (auto &ctgy:main_data) {
         total_MTP += (ctgy.second.category_credits * ctgy.second.category_gpa);
     }
-    total_average_gpa = total_MTP / total_credits;
+    if (total_credits != 0) {
+        total_average_gpa = total_MTP / total_credits;
+    }
+    else {
+        total_average_gpa = 0;
+    }
 }
 
 
@@ -160,7 +170,12 @@ double Overall::get_category_GPA(std::vector<std::string> &categories) {
             MTP += main_data[i].category_credits * main_data[i].category_gpa;
         }
     }
-    return MTP / credits;
+    if (credits != 0) {
+        return MTP / credits;
+    }
+    else {
+        return 0;
+    }
 }
 
 double Overall::get_category_credits(std::vector<std::string> &categories) {
