@@ -163,7 +163,7 @@ double Overall::get_total_credits() {
 
 double Overall::get_category_GPA(std::vector<std::string> &categories) {
     double MTP = 0;
-    int credits = 0;
+    double credits = 0;
     for (auto i:categories) {
         if (main_data.find(i) != main_data.end()) {
             credits += main_data[i].category_credits;
@@ -179,7 +179,7 @@ double Overall::get_category_GPA(std::vector<std::string> &categories) {
 }
 
 double Overall::get_category_credits(std::vector<std::string> &categories) {
-    int credits = 0;
+    double credits = 0;
     for (auto i:categories) {
         if (main_data.find(i) != main_data.end()) {
             credits += main_data[i].category_credits;
