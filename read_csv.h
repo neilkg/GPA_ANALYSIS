@@ -37,7 +37,7 @@ void read_csv(const std::string &filename, std::vector<Taken_Course> &data) {
     std::map<std::string, std::string> credits_data;
     
     std::string name_in;
-    double credits_in;
+    double credits_in = 0.0;
     std::string grade_in;
     
     while (csv >> credits_data) {
@@ -57,7 +57,6 @@ void read_csv(const std::string &filename, std::vector<Taken_Course> &data) {
         Taken_Course object;
         object.name = name_in;
         object.grade = grade_in;
-        object.credits = 0.0;
         object.credits = credits_in;
         data.push_back(object);
     }
