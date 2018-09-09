@@ -1,3 +1,4 @@
+#!bin/bash
 mkdir GPX_test
 cd GPX_test
 git init
