@@ -555,3 +555,4 @@ namespace termcolor
 #undef TERMCOLOR_OS_LINUX
 
 #endif // TERMCOLOR_HPP_
+
