@@ -77,7 +77,7 @@ public:
 private:
     std::map<std::string, Category> main_data;
     std::vector<Taken_Course> added_data;
-    std::map<std::string, double> grade_to_gpa = {{"A+", 4.0}, {"A", 4.0},
+    std::map<std::string, double> grade_to_gpa = {{"A+", 4.3}, {"A", 4.0},
         {"A-", 3.7}, {"B+", 3.3}, {"B", 3.0}, {"B-", 2.7}, {"C+", 2.3},
         {"C", 2.0}, {"C-", 1.7}, {"D", 1}, {"E", 0}};
     double total_average_gpa;
